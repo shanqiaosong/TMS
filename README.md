@@ -1,61 +1,76 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# TMSys. 教师绩效管理系统
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+一个基于 React 与 Ant Design 的轻量级教师绩效管理系统。
 
-## About Laravel
+基于《中小学教师职务评聘的长效考核机制》开发，设置责任明确的管理权限，每学期结束时对各项考核指标进行量化，量化结果公开，逐年累计，职务晋升时依据量化排名依次确定晋升人员。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 教师信息管理
 
-## Learning Laravel
+**教师信息管理：**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![teacherList](readme_pic\teacherList.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+可即刻查看缺失的数据和账号绑定情况，支持基于姓名和身份证号的搜索。
 
-## Laravel Sponsors
+**教师信息编辑：**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+![teacherInfo](readme_pic\teacherInfo.png)
 
-### Premium Partners
+支持身份证号合法性、唯一性自动查验，防止出错。
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+## 教师成绩管理
 
-## Contributing
+**教师成绩编辑：**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![edit_score](readme_pic\edit_score.png)
 
-## Code of Conduct
+可编辑逐年分数，记录奖惩信息。支持输入提示，根据各学校不同制度随时调整。
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**学年成绩生成：**
 
-## Security Vulnerabilities
+![result](readme_pic\result.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+生成后将结果保存，作为存档。支持 xlsx 文件输出。
 
-## License
+## 教师账号绑定
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+教师可注册账号，查看本人成绩及同校教师排名。校方统一进行账号绑定审核。
+
+**教师申请绑定：**
+
+![user-binding](readme_pic\user-binding.png)
+
+**校方审核：**
+
+![binding](readme_pic\binding.png)
+
+**分数解释：**
+
+![explain](readme_pic\explain.png)
+
+## 通知系统
+
+**校方发布通知：**
+
+![notice](readme_pic\notice.png)
+
+**教师查看通知：**
+
+![user-notice](readme_pic\user-notice.png)
+
+## 系统管理
+
+**管理员仪表盘界面：**
+
+![dashboard](readme_pic\dashboard.png)
+
+## TODO：
+
+- 移动端的适配
+- 同校教师信息查看
+- 教育局管理
+- 教师反馈、评论功能
+- 微信登录
+- ...
