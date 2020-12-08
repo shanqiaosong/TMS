@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="8550bbf7-d97e-4dba-9966-cf6ab5de37eb" name="Ali" url="http://shanqiaosong.com/">
+        <fileTransfer rootFolder="/var/www/html" accessType="SFTP" host="shanqiaosong.com" port="22" sshConfigId="2e2a70c0-917f-4b0e-b7e2-528a3da6acf8" sshConfig="root@shanqiaosong.com:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,58 @@
+.site-layout-background {
+    background: #fff;
+}
+.site-page-header {
+    border: 1px solid rgb(235, 237, 240);
+}
+.ant-divider-inner-text,.ant-notification-notice-message{
+    font-weight: bold;
+}
+.ant-popover-title,.ant-drawer-title,.ant-modal-title,.ant-alert-message,.ant-card-head-title{
+    font-weight: bold;
+}
+
+/*联合输入框*/
+.site-input-group-wrapper .site-input-split {
+    background-color: transparent;
+}
+
+.site-input-group-wrapper .site-input-right {
+    border-left-width: 0!important;
+}
+.site-input-group-wrapper .site-input-left {
+     border-right-width: 0!important;
+ }
+
+.site-input-group-wrapper .site-input-right:hover,
+.site-input-group-wrapper .site-input-right:focus {
+    border-left-width: 1px!important;
+}
+
+.site-input-group-wrapper .site-input-left:hover,
+ .site-input-group-wrapper .site-input-left:focus {
+     border-right-width: 1px!important;
+ }
+
+
+.ant-divider-horizontal.ant-divider-with-text-left::before {
+    /*笑脸和哭脸在一条竖直线上*/
+    top: 50%;
+    width: 18px;
+}
+
+/*解决联合输入框的bug*/
+.ant-input-number-input {
+    height: 29.5px!important;
+}
+
+.notice *{
+    max-width: 100%;
+}
+
+.ant-list-item-meta-title{
+    font-weight: bold;
+}
+
+.ant-select{
+    margin-bottom: 10px!important
+}

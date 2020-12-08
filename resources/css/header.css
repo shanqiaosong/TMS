@@ -1,0 +1,19 @@
+#logo{
+    width: 127px;
+    background: url(/img/logo-text.png) no-repeat center;
+    height: 64px;
+    background-size: contain;
+    float: left;
+    margin-right: 50px;
+}
+.ant-layout-header {
+    padding: 0 22px;
+}
+.layout{
+    min-height: 100vh;
+}
+.header{
+    position: fixed;
+    z-index: 10;
+    width: 100%
+}
