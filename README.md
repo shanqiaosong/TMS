@@ -10,13 +10,13 @@
 
 **教师信息管理：**
 
-![teacherList](readme_pic/teacherList.png)
+<img src="readme_pic/teacherList.png" width="800">
 
 可即刻查看缺失的数据和账号绑定情况，支持基于姓名和身份证号的搜索。
 
 **教师信息编辑：**
 
-![teacherInfo](readme_pic/teacherInfo.png)
+<img src="readme_pic/teacherInfo.png" width="500">
 
 支持身份证号合法性、唯一性自动查验，防止出错。
 
@@ -24,13 +24,15 @@
 
 **教师成绩编辑：**
 
-![edit_score](readme_pic/edit_score.png)
+<img src="readme_pic/edit_score.png" width="800">
+
 
 可编辑逐年分数，记录奖惩信息。支持输入提示，根据各学校不同制度随时调整。
 
 **学年成绩生成：**
 
-![result](readme_pic/result.png)
+<img src="readme_pic/result.png" width="800">
+
 
 生成后将结果保存，作为存档。支持 xlsx 文件输出。
 
@@ -40,31 +42,37 @@
 
 **教师申请绑定：**
 
-![user-binding](readme_pic/user-binding.png)
+<img src="readme_pic/user-binding.png" width="800">
+
 
 **校方审核：**
 
-![binding](readme_pic/binding.png)
+<img src="readme_pic/binding.png" width="800">
+
 
 **分数解释：**
 
-![explain](readme_pic/explain.png)
+<img src="readme_pic/explain.png" width="500">
+
 
 ## 通知系统
 
 **校方发布通知：**
 
-![notice](readme_pic/notice.png)
+<img src="readme_pic/notice.png" width="800">
+
 
 **教师查看通知：**
 
-![user-notice](readme_pic/user-notice.png)
+<img src="readme_pic/user-notice.png" width="800">
+
 
 ## 系统管理
 
 **管理员仪表盘界面：**
 
-![dashboard](readme_pic/dashboard.png)
+<img src="readme_pic/dashboard.png" width="800">
+
 
 ## TODO：
 
