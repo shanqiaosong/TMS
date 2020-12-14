@@ -234,7 +234,7 @@ class App extends React.Component{
                                                         <Result
                                                             status="404"
                                                             title="尚未绑定"
-                                                            subTitle="抱歉，学校尚未绑定您的教师信息。请联系学校负责人或系统管理员。"
+                                                            subTitle="抱歉，学校尚未绑定您的教师信息。请先提交绑定。"
                                                             extra={<Button type="primary"><Link to={base+'/bind'}>去提交绑定</Link></Button>}
                                                         />:
                                                 < Explain resultID={this.state.myResID}/>

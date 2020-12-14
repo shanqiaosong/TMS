@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[40],{
 
-/***/ "./node_modules/monaco-editor/esm/vs/basic-languages/lexon/lexon.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/basic-languages/lexon/lexon.js ***!
-  \**************************************************************************/
+/***/ "./node_modules/monaco-editor/esm/vs/basic-languages/less/less.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/monaco-editor/esm/vs/basic-languages/less/less.js ***!
+  \************************************************************************/
 /*! exports provided: conf, language */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -16,157 +16,164 @@ __webpack_require__.r(__webpack_exports__);
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 var conf = {
+    wordPattern: /(#?-?\d*\.\d\w*%?)|([@#!.:]?[\w-?]+%?)|[@#!.]/g,
     comments: {
-        lineComment: 'COMMENT'
-        // blockComment: ['COMMENT', '.'],
+        blockComment: ['/*', '*/'],
+        lineComment: '//'
     },
-    brackets: [['(', ')']],
+    brackets: [
+        ['{', '}'],
+        ['[', ']'],
+        ['(', ')']
+    ],
     autoClosingPairs: [
-        { open: '{', close: '}' },
-        { open: '[', close: ']' },
-        { open: '(', close: ')' },
-        { open: '"', close: '"' },
-        { open: ':', close: '.' }
+        { open: '{', close: '}', notIn: ['string', 'comment'] },
+        { open: '[', close: ']', notIn: ['string', 'comment'] },
+        { open: '(', close: ')', notIn: ['string', 'comment'] },
+        { open: '"', close: '"', notIn: ['string', 'comment'] },
+        { open: "'", close: "'", notIn: ['string', 'comment'] }
     ],
     surroundingPairs: [
         { open: '{', close: '}' },
         { open: '[', close: ']' },
         { open: '(', close: ')' },
-        { open: '`', close: '`' },
         { open: '"', close: '"' },
-        { open: "'", close: "'" },
-        { open: ':', close: '.' }
+        { open: "'", close: "'" }
     ],
     folding: {
         markers: {
-            start: new RegExp('^\\s*(::\\s*|COMMENT\\s+)#region'),
-            end: new RegExp('^\\s*(::\\s*|COMMENT\\s+)#endregion')
+            start: new RegExp('^\\s*\\/\\*\\s*#region\\b\\s*(.*?)\\s*\\*\\/'),
+            end: new RegExp('^\\s*\\/\\*\\s*#endregion\\b.*\\*\\/')
         }
     }
 };
 var language = {
-    // Set defaultToken to invalid to see what you do not tokenize yet
-    // defaultToken: 'invalid',
-    tokenPostfix: '.lexon',
-    ignoreCase: true,
-    keywords: [
-        'lexon',
-        'lex',
-        'clause',
-        'terms',
-        'contracts',
-        'may',
-        'pay',
-        'pays',
-        'appoints',
-        'into',
-        'to'
+    defaultToken: '',
+    tokenPostfix: '.less',
+    identifier: '-?-?([a-zA-Z]|(\\\\(([0-9a-fA-F]{1,6}\\s?)|[^[0-9a-fA-F])))([\\w\\-]|(\\\\(([0-9a-fA-F]{1,6}\\s?)|[^[0-9a-fA-F])))*',
+    identifierPlus: '-?-?([a-zA-Z:.]|(\\\\(([0-9a-fA-F]{1,6}\\s?)|[^[0-9a-fA-F])))([\\w\\-:.]|(\\\\(([0-9a-fA-F]{1,6}\\s?)|[^[0-9a-fA-F])))*',
+    brackets: [
+        { open: '{', close: '}', token: 'delimiter.curly' },
+        { open: '[', close: ']', token: 'delimiter.bracket' },
+        { open: '(', close: ')', token: 'delimiter.parenthesis' },
+        { open: '<', close: '>', token: 'delimiter.angle' }
     ],
-    typeKeywords: ['amount', 'person', 'key', 'time', 'date', 'asset', 'text'],
-    operators: [
-        'less',
-        'greater',
-        'equal',
-        'le',
-        'gt',
-        'or',
-        'and',
-        'add',
-        'added',
-        'subtract',
-        'subtracted',
-        'multiply',
-        'multiplied',
-        'times',
-        'divide',
-        'divided',
-        'is',
-        'be',
-        'certified'
-    ],
-    // we include these common regular expressions
-    symbols: /[=><!~?:&|+\-*\/\^%]+/,
-    // The main tokenizer for our languages
     tokenizer: {
         root: [
-            // comment
-            [/^(\s*)(comment:?(?:\s.*|))$/, ['', 'comment']],
-            // special identifier cases
+            { include: '@nestedJSBegin' },
+            ['[ \\t\\r\\n]+', ''],
+            { include: '@comments' },
+            { include: '@keyword' },
+            { include: '@strings' },
+            { include: '@numbers' },
+            ['[*_]?[a-zA-Z\\-\\s]+(?=:.*(;|(\\\\$)))', 'attribute.name', '@attribute'],
+            ['url(\\-prefix)?\\(', { token: 'tag', next: '@urldeclaration' }],
+            ['[{}()\\[\\]]', '@brackets'],
+            ['[,:;]', 'delimiter'],
+            ['#@identifierPlus', 'tag.id'],
+            ['&', 'tag'],
+            ['\\.@identifierPlus(?=\\()', 'tag.class', '@attribute'],
+            ['\\.@identifierPlus', 'tag.class'],
+            ['@identifierPlus', 'tag'],
+            { include: '@operators' },
+            ['@(@identifier(?=[:,\\)]))', 'variable', '@attribute'],
+            ['@(@identifier)', 'variable'],
+            ['@', 'key', '@atRules']
+        ],
+        nestedJSBegin: [
+            ['``', 'delimiter.backtick'],
             [
-                /"/,
+                '`',
                 {
-                    token: 'identifier.quote',
-                    bracket: '@open',
-                    next: '@quoted_identifier'
+                    token: 'delimiter.backtick',
+                    next: '@nestedJSEnd',
+                    nextEmbedded: 'text/javascript'
                 }
-            ],
+            ]
+        ],
+        nestedJSEnd: [
             [
-                'LEX$',
+                '`',
                 {
-                    token: 'keyword',
-                    bracket: '@open',
-                    next: '@identifier_until_period'
+                    token: 'delimiter.backtick',
+                    next: '@pop',
+                    nextEmbedded: '@pop'
                 }
-            ],
-            ['LEXON', { token: 'keyword', bracket: '@open', next: '@semver' }],
+            ]
+        ],
+        operators: [['[<>=\\+\\-\\*\\/\\^\\|\\~]', 'operator']],
+        keyword: [
             [
-                ':',
-                {
-                    token: 'delimiter',
-                    bracket: '@open',
-                    next: '@identifier_until_period'
-                }
-            ],
-            // identifiers and keywords
+                '(@[\\s]*import|![\\s]*important|true|false|when|iscolor|isnumber|isstring|iskeyword|isurl|ispixel|ispercentage|isem|hue|saturation|lightness|alpha|lighten|darken|saturate|desaturate|fadein|fadeout|fade|spin|mix|round|ceil|floor|percentage)\\b',
+                'keyword'
+            ]
+        ],
+        urldeclaration: [
+            { include: '@strings' },
+            ['[^)\r\n]+', 'string'],
+            ['\\)', { token: 'tag', next: '@pop' }]
+        ],
+        attribute: [
+            { include: '@nestedJSBegin' },
+            { include: '@comments' },
+            { include: '@strings' },
+            { include: '@numbers' },
+            { include: '@keyword' },
+            ['[a-zA-Z\\-]+(?=\\()', 'attribute.value', '@attribute'],
+            ['>', 'operator', '@pop'],
+            ['@identifier', 'attribute.value'],
+            { include: '@operators' },
+            ['@(@identifier)', 'variable'],
+            ['[)\\}]', '@brackets', '@pop'],
+            ['[{}()\\[\\]>]', '@brackets'],
+            ['[;]', 'delimiter', '@pop'],
+            ['[,=:]', 'delimiter'],
+            ['\\s', ''],
+            ['.', 'attribute.value']
+        ],
+        comments: [
+            ['\\/\\*', 'comment', '@comment'],
+            ['\\/\\/+.*', 'comment']
+        ],
+        comment: [
+            ['\\*\\/', 'comment', '@pop'],
+            ['.', 'comment']
+        ],
+        numbers: [
             [
-                /[a-z_$][\w$]*/,
-                {
-                    cases: {
-                        '@operators': 'operator',
-                        '@typeKeywords': 'keyword.type',
-                        '@keywords': 'keyword',
-                        '@default': 'identifier'
-                    }
-                }
+                '(\\d*\\.)?\\d+([eE][\\-+]?\\d+)?',
+                { token: 'attribute.value.number', next: '@units' }
             ],
-            // whitespace
-            { include: '@whitespace' },
-            // delimiters and operators
-            [/[{}()\[\]]/, '@brackets'],
-            [/[<>](?!@symbols)/, '@brackets'],
-            [/@symbols/, 'delimiter'],
-            // numbers
-            [/\d*\.\d*\.\d*/, 'number.semver'],
-            [/\d*\.\d+([eE][\-+]?\d+)?/, 'number.float'],
-            [/0[xX][0-9a-fA-F]+/, 'number.hex'],
-            [/\d+/, 'number'],
-            // delimiter: after number because of .\d floats
-            [/[;,.]/, 'delimiter']
+            ['#[0-9a-fA-F_]+(?!\\w)', 'attribute.value.hex']
         ],
-        quoted_identifier: [
-            [/[^\\"]+/, 'identifier'],
-            [/"/, { token: 'identifier.quote', bracket: '@close', next: '@pop' }]
+        units: [
+            [
+                '(em|ex|ch|rem|vmin|vmax|vw|vh|vm|cm|mm|in|px|pt|pc|deg|grad|rad|turn|s|ms|Hz|kHz|%)?',
+                'attribute.value.unit',
+                '@pop'
+            ]
         ],
-        space_identifier_until_period: [
-            [':', 'delimiter'],
-            [' ', { token: 'white', next: '@identifier_rest' }]
+        strings: [
+            ['~?"', { token: 'string.delimiter', next: '@stringsEndDoubleQuote' }],
+            ["~?'", { token: 'string.delimiter', next: '@stringsEndQuote' }]
         ],
-        identifier_until_period: [
-            { include: '@whitespace' },
-            [':', { token: 'delimiter', next: '@identifier_rest' }],
-            [/[^\\.]+/, 'identifier'],
-            [/\./, { token: 'delimiter', bracket: '@close', next: '@pop' }]
+        stringsEndDoubleQuote: [
+            ['\\\\"', 'string'],
+            ['"', { token: 'string.delimiter', next: '@popall' }],
+            ['.', 'string']
         ],
-        identifier_rest: [
-            [/[^\\.]+/, 'identifier'],
-            [/\./, { token: 'delimiter', bracket: '@close', next: '@pop' }]
+        stringsEndQuote: [
+            ["\\\\'", 'string'],
+            ["'", { token: 'string.delimiter', next: '@popall' }],
+            ['.', 'string']
         ],
-        semver: [
-            { include: '@whitespace' },
-            [':', 'delimiter'],
-            [/\d*\.\d*\.\d*/, { token: 'number.semver', bracket: '@close', next: '@pop' }]
-        ],
-        whitespace: [[/[ \t\r\n]+/, 'white']]
+        atRules: [
+            { include: '@comments' },
+            { include: '@strings' },
+            ['[()]', 'delimiter'],
+            ['[\\{;]', 'delimiter', '@pop'],
+            ['.', 'key']
+        ]
     }
 };
 

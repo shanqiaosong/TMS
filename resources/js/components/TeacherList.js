@@ -38,7 +38,7 @@ import {
     Link
 } from "react-router-dom"
 import {handleErr} from "../helper";
-const Hashids = require('hashids/cjs')
+import Hashids from 'hashids'
 const hashids = new Hashids('qiaosong',8)
 
 const base='/admin/points'

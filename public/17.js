@@ -1,1131 +1,634 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[17],{
 
-/***/ "./node_modules/monaco-editor/esm/vs/basic-languages/abap/abap.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/basic-languages/abap/abap.js ***!
-  \************************************************************************/
-/*! exports provided: conf, language */
+/***/ "./resources/js/components/TeacherList.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/TeacherList.js ***!
+  \************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "conf", function() { return conf; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "language", function() { return language; });
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-var conf = {
-    comments: {
-        lineComment: '*'
-    },
-    brackets: [
-        ['[', ']'],
-        ['(', ')']
-    ]
-};
-var abapKeywords = [
-    // words
-    'abap-source',
-    'abbreviated',
-    'abstract',
-    'accept',
-    'accepting',
-    'according',
-    'activation',
-    'actual',
-    'add',
-    'add-corresponding',
-    'adjacent',
-    'after',
-    'alias',
-    'aliases',
-    'align',
-    'all',
-    'allocate',
-    'alpha',
-    'analysis',
-    'analyzer',
-    'append',
-    'appendage',
-    'appending',
-    'application',
-    'archive',
-    'area',
-    'arithmetic',
-    'as',
-    'ascending',
-    'aspect',
-    'assert',
-    'assign',
-    'assigned',
-    'assigning',
-    'association',
-    'asynchronous',
-    'at',
-    'attributes',
-    'authority',
-    'authority-check',
-    'avg',
-    'back',
-    'background',
-    'backup',
-    'backward',
-    'badi',
-    'base',
-    'before',
-    'begin',
-    'big',
-    'binary',
-    'bintohex',
-    'bit',
-    'black',
-    'blank',
-    'blanks',
-    'blob',
-    'block',
-    'blocks',
-    'blue',
-    'bound',
-    'boundaries',
-    'bounds',
-    'boxed',
-    'break-point',
-    'buffer',
-    'by',
-    'bypassing',
-    'byte',
-    'byte-order',
-    'call',
-    'calling',
-    'case',
-    'cast',
-    'casting',
-    'catch',
-    'center',
-    'centered',
-    'chain',
-    'chain-input',
-    'chain-request',
-    'change',
-    'changing',
-    'channels',
-    'character',
-    'char-to-hex',
-    'check',
-    'checkbox',
-    'ci_',
-    'circular',
-    'class',
-    'class-coding',
-    'class-data',
-    'class-events',
-    'class-methods',
-    'class-pool',
-    'cleanup',
-    'clear',
-    'client',
-    'clob',
-    'clock',
-    'close',
-    'coalesce',
-    'code',
-    'coding',
-    'col_background',
-    'col_group',
-    'col_heading',
-    'col_key',
-    'col_negative',
-    'col_normal',
-    'col_positive',
-    'col_total',
-    'collect',
-    'color',
-    'column',
-    'columns',
-    'comment',
-    'comments',
-    'commit',
-    'common',
-    'communication',
-    'comparing',
-    'component',
-    'components',
-    'compression',
-    'compute',
-    'concat',
-    'concat_with_space',
-    'concatenate',
-    'cond',
-    'condition',
-    'connect',
-    'connection',
-    'constants',
-    'context',
-    'contexts',
-    'continue',
-    'control',
-    'controls',
-    'conv',
-    'conversion',
-    'convert',
-    'copies',
-    'copy',
-    'corresponding',
-    'country',
-    'cover',
-    'cpi',
-    'create',
-    'creating',
-    'critical',
-    'currency',
-    'currency_conversion',
-    'current',
-    'cursor',
-    'cursor-selection',
-    'customer',
-    'customer-function',
-    'dangerous',
-    'data',
-    'database',
-    'datainfo',
-    'dataset',
-    'date',
-    'dats_add_days',
-    'dats_add_months',
-    'dats_days_between',
-    'dats_is_valid',
-    'daylight',
-    'dd/mm/yy',
-    'dd/mm/yyyy',
-    'ddmmyy',
-    'deallocate',
-    'decimal_shift',
-    'decimals',
-    'declarations',
-    'deep',
-    'default',
-    'deferred',
-    'define',
-    'defining',
-    'definition',
-    'delete',
-    'deleting',
-    'demand',
-    'department',
-    'descending',
-    'describe',
-    'destination',
-    'detail',
-    'dialog',
-    'directory',
-    'disconnect',
-    'display',
-    'display-mode',
-    'distinct',
-    'divide',
-    'divide-corresponding',
-    'division',
-    'do',
-    'dummy',
-    'duplicate',
-    'duplicates',
-    'duration',
-    'during',
-    'dynamic',
-    'dynpro',
-    'edit',
-    'editor-call',
-    'else',
-    'elseif',
-    'empty',
-    'enabled',
-    'enabling',
-    'encoding',
-    'end',
-    'endat',
-    'endcase',
-    'endcatch',
-    'endchain',
-    'endclass',
-    'enddo',
-    'endenhancement',
-    'end-enhancement-section',
-    'endexec',
-    'endform',
-    'endfunction',
-    'endian',
-    'endif',
-    'ending',
-    'endinterface',
-    'end-lines',
-    'endloop',
-    'endmethod',
-    'endmodule',
-    'end-of-definition',
-    'end-of-editing',
-    'end-of-file',
-    'end-of-page',
-    'end-of-selection',
-    'endon',
-    'endprovide',
-    'endselect',
-    'end-test-injection',
-    'end-test-seam',
-    'endtry',
-    'endwhile',
-    'endwith',
-    'engineering',
-    'enhancement',
-    'enhancement-point',
-    'enhancements',
-    'enhancement-section',
-    'entries',
-    'entry',
-    'enum',
-    'environment',
-    'errormessage',
-    'errors',
-    'escaping',
-    'event',
-    'events',
-    'exact',
-    'except',
-    'exception',
-    'exceptions',
-    'exception-table',
-    'exclude',
-    'excluding',
-    'exec',
-    'execute',
-    'exists',
-    'exit',
-    'exit-command',
-    'expand',
-    'expanding',
-    'expiration',
-    'explicit',
-    'exponent',
-    'export',
-    'exporting',
-    'extend',
-    'extended',
-    'extension',
-    'extract',
-    'fail',
-    'fetch',
-    'field',
-    'field-groups',
-    'fields',
-    'field-symbol',
-    'field-symbols',
-    'file',
-    'filter',
-    'filters',
-    'filter-table',
-    'final',
-    'first',
-    'first-line',
-    'fixed-point',
-    'fkeq',
-    'fkge',
-    'flush',
-    'font',
-    'for',
-    'form',
-    'format',
-    'forward',
-    'found',
-    'frame',
-    'frames',
-    'free',
-    'friends',
-    'from',
-    'function',
-    'functionality',
-    'function-pool',
-    'further',
-    'gaps',
-    'generate',
-    'get',
-    'giving',
-    'gkeq',
-    'gkge',
-    'global',
-    'grant',
-    'green',
-    'group',
-    'groups',
-    'handle',
-    'handler',
-    'harmless',
-    'hashed',
-    'having',
-    'hdb',
-    'header',
-    'headers',
-    'heading',
-    'head-lines',
-    'help-id',
-    'help-request',
-    'hextobin',
-    'hide',
-    'high',
-    'hint',
-    'hold',
-    'hotspot',
-    'icon',
-    'id',
-    'identification',
-    'identifier',
-    'ids',
-    'if',
-    'ignore',
-    'ignoring',
-    'immediately',
-    'implementation',
-    'implementations',
-    'implemented',
-    'implicit',
-    'import',
-    'importing',
-    'inactive',
-    'incl',
-    'include',
-    'includes',
-    'including',
-    'increment',
-    'index',
-    'index-line',
-    'infotypes',
-    'inheriting',
-    'init',
-    'initial',
-    'initialization',
-    'inner',
-    'inout',
-    'input',
-    'instance',
-    'instances',
-    'instr',
-    'intensified',
-    'interface',
-    'interface-pool',
-    'interfaces',
-    'internal',
-    'intervals',
-    'into',
-    'inverse',
-    'inverted-date',
-    'is',
-    'iso',
-    'job',
-    'join',
-    'keep',
-    'keeping',
-    'kernel',
-    'key',
-    'keys',
-    'keywords',
-    'kind',
-    'language',
-    'last',
-    'late',
-    'layout',
-    'leading',
-    'leave',
-    'left',
-    'left-justified',
-    'leftplus',
-    'leftspace',
-    'legacy',
-    'length',
-    'let',
-    'level',
-    'levels',
-    'like',
-    'line',
-    'line-count',
-    'linefeed',
-    'line-selection',
-    'line-size',
-    'list',
-    'listbox',
-    'list-processing',
-    'little',
-    'llang',
-    'load',
-    'load-of-program',
-    'lob',
-    'local',
-    'locale',
-    'locator',
-    'logfile',
-    'logical',
-    'log-point',
-    'long',
-    'loop',
-    'low',
-    'lower',
-    'lpad',
-    'lpi',
-    'ltrim',
-    'mail',
-    'main',
-    'major-id',
-    'mapping',
-    'margin',
-    'mark',
-    'mask',
-    'matchcode',
-    'max',
-    'maximum',
-    'medium',
-    'members',
-    'memory',
-    'mesh',
-    'message',
-    'message-id',
-    'messages',
-    'messaging',
-    'method',
-    'methods',
-    'min',
-    'minimum',
-    'minor-id',
-    'mm/dd/yy',
-    'mm/dd/yyyy',
-    'mmddyy',
-    'mode',
-    'modif',
-    'modifier',
-    'modify',
-    'module',
-    'move',
-    'move-corresponding',
-    'multiply',
-    'multiply-corresponding',
-    'name',
-    'nametab',
-    'native',
-    'nested',
-    'nesting',
-    'new',
-    'new-line',
-    'new-page',
-    'new-section',
-    'next',
-    'no',
-    'node',
-    'nodes',
-    'no-display',
-    'no-extension',
-    'no-gap',
-    'no-gaps',
-    'no-grouping',
-    'no-heading',
-    'non-unicode',
-    'non-unique',
-    'no-scrolling',
-    'no-sign',
-    'no-title',
-    'no-topofpage',
-    'no-zero',
-    'null',
-    'number',
-    'object',
-    'objects',
-    'obligatory',
-    'occurrence',
-    'occurrences',
-    'occurs',
-    'of',
-    'off',
-    'offset',
-    'ole',
-    'on',
-    'only',
-    'open',
-    'option',
-    'optional',
-    'options',
-    'order',
-    'other',
-    'others',
-    'out',
-    'outer',
-    'output',
-    'output-length',
-    'overflow',
-    'overlay',
-    'pack',
-    'package',
-    'pad',
-    'padding',
-    'page',
-    'pages',
-    'parameter',
-    'parameters',
-    'parameter-table',
-    'part',
-    'partially',
-    'pattern',
-    'percentage',
-    'perform',
-    'performing',
-    'person',
-    'pf1',
-    'pf10',
-    'pf11',
-    'pf12',
-    'pf13',
-    'pf14',
-    'pf15',
-    'pf2',
-    'pf3',
-    'pf4',
-    'pf5',
-    'pf6',
-    'pf7',
-    'pf8',
-    'pf9',
-    'pf-status',
-    'pink',
-    'places',
-    'pool',
-    'pos_high',
-    'pos_low',
-    'position',
-    'pragmas',
-    'precompiled',
-    'preferred',
-    'preserving',
-    'primary',
-    'print',
-    'print-control',
-    'priority',
-    'private',
-    'procedure',
-    'process',
-    'program',
-    'property',
-    'protected',
-    'provide',
-    'public',
-    'push',
-    'pushbutton',
-    'put',
-    'queue-only',
-    'quickinfo',
-    'radiobutton',
-    'raise',
-    'raising',
-    'range',
-    'ranges',
-    'read',
-    'reader',
-    'read-only',
-    'receive',
-    'received',
-    'receiver',
-    'receiving',
-    'red',
-    'redefinition',
-    'reduce',
-    'reduced',
-    'ref',
-    'reference',
-    'refresh',
-    'regex',
-    'reject',
-    'remote',
-    'renaming',
-    'replacement',
-    'replacing',
-    'report',
-    'request',
-    'requested',
-    'reserve',
-    'reset',
-    'resolution',
-    'respecting',
-    'responsible',
-    'result',
-    'results',
-    'resumable',
-    'resume',
-    'retry',
-    'return',
-    'returncode',
-    'returning',
-    'returns',
-    'right',
-    'right-justified',
-    'rightplus',
-    'rightspace',
-    'risk',
-    'rmc_communication_failure',
-    'rmc_invalid_status',
-    'rmc_system_failure',
-    'role',
-    'rollback',
-    'rows',
-    'rpad',
-    'rtrim',
-    'run',
-    'sap',
-    'sap-spool',
-    'saving',
-    'scale_preserving',
-    'scale_preserving_scientific',
-    'scan',
-    'scientific',
-    'scientific_with_leading_zero',
-    'scroll',
-    'scroll-boundary',
-    'scrolling',
-    'search',
-    'secondary',
-    'seconds',
-    'section',
-    'select',
-    'selection',
-    'selections',
-    'selection-screen',
-    'selection-set',
-    'selection-sets',
-    'selection-table',
-    'select-options',
-    'send',
-    'separate',
-    'separated',
-    'set',
-    'shared',
-    'shift',
-    'short',
-    'shortdump-id',
-    'sign_as_postfix',
-    'single',
-    'size',
-    'skip',
-    'skipping',
-    'smart',
-    'some',
-    'sort',
-    'sortable',
-    'sorted',
-    'source',
-    'specified',
-    'split',
-    'spool',
-    'spots',
-    'sql',
-    'sqlscript',
-    'stable',
-    'stamp',
-    'standard',
-    'starting',
-    'start-of-editing',
-    'start-of-selection',
-    'state',
-    'statement',
-    'statements',
-    'static',
-    'statics',
-    'statusinfo',
-    'step-loop',
-    'stop',
-    'structure',
-    'structures',
-    'style',
-    'subkey',
-    'submatches',
-    'submit',
-    'subroutine',
-    'subscreen',
-    'subtract',
-    'subtract-corresponding',
-    'suffix',
-    'sum',
-    'summary',
-    'summing',
-    'supplied',
-    'supply',
-    'suppress',
-    'switch',
-    'switchstates',
-    'symbol',
-    'syncpoints',
-    'syntax',
-    'syntax-check',
-    'syntax-trace',
-    'system-call',
-    'system-exceptions',
-    'system-exit',
-    'tab',
-    'tabbed',
-    'tables',
-    'tableview',
-    'tabstrip',
-    'target',
-    'task',
-    'tasks',
-    'test',
-    'testing',
-    'test-injection',
-    'test-seam',
-    'text',
-    'textpool',
-    'then',
-    'throw',
-    'time',
-    'times',
-    'timestamp',
-    'timezone',
-    'tims_is_valid',
-    'title',
-    'titlebar',
-    'title-lines',
-    'to',
-    'tokenization',
-    'tokens',
-    'top-lines',
-    'top-of-page',
-    'trace-file',
-    'trace-table',
-    'trailing',
-    'transaction',
-    'transfer',
-    'transformation',
-    'transporting',
-    'trmac',
-    'truncate',
-    'truncation',
-    'try',
-    'tstmp_add_seconds',
-    'tstmp_current_utctimestamp',
-    'tstmp_is_valid',
-    'tstmp_seconds_between',
-    'type',
-    'type-pool',
-    'type-pools',
-    'types',
-    'uline',
-    'unassign',
-    'under',
-    'unicode',
-    'union',
-    'unique',
-    'unit_conversion',
-    'unix',
-    'unpack',
-    'until',
-    'unwind',
-    'up',
-    'update',
-    'upper',
-    'user',
-    'user-command',
-    'using',
-    'utf-8',
-    'valid',
-    'value',
-    'value-request',
-    'values',
-    'vary',
-    'varying',
-    'verification-message',
-    'version',
-    'via',
-    'view',
-    'visible',
-    'wait',
-    'warning',
-    'when',
-    'whenever',
-    'where',
-    'while',
-    'width',
-    'window',
-    'windows',
-    'with',
-    'with-heading',
-    'without',
-    'with-title',
-    'word',
-    'work',
-    'write',
-    'writer',
-    'xml',
-    'xsd',
-    'yellow',
-    'yes',
-    'yymmdd',
-    'zero',
-    'zone',
-    // built-ins
-    'abs',
-    'acos',
-    'asin',
-    'atan',
-    'bit-set',
-    'boolc',
-    'boolx',
-    'ceil',
-    'char_off',
-    'charlen',
-    'cmax',
-    'cmin',
-    'concat_lines_of',
-    'condense',
-    'contains',
-    'contains_any_not_of',
-    'contains_any_of',
-    'cos',
-    'cosh',
-    'count',
-    'count_any_not_of',
-    'count_any_of',
-    'dbmaxlen',
-    'distance',
-    'escape',
-    'exp',
-    'find',
-    'find_any_not_of',
-    'find_any_of',
-    'find_end',
-    'floor',
-    'frac',
-    'from_mixed',
-    'insert',
-    'ipow',
-    'line_exists',
-    'line_index',
-    'lines',
-    'log',
-    'log10',
-    'match',
-    'matches',
-    'nmax',
-    'nmin',
-    'numofchar',
-    'repeat',
-    'replace',
-    'rescale',
-    'reverse',
-    'round',
-    'segment',
-    'shift_left',
-    'shift_right',
-    'sign',
-    'sin',
-    'sinh',
-    'sqrt',
-    'strlen',
-    'substring',
-    'substring_after',
-    'substring_before',
-    'substring_from',
-    'substring_to',
-    'tan',
-    'tanh',
-    'to_lower',
-    'to_mixed',
-    'to_upper',
-    'translate',
-    'trunc',
-    'utclong_add',
-    'utclong_current',
-    'utclong_diff',
-    'xsdbool',
-    'xstrlen'
-];
-var language = {
-    defaultToken: 'invalid',
-    ignoreCase: true,
-    tokenPostfix: '.abap',
-    keywords: abapKeywords,
-    typeKeywords: [
-        // built-in data types
-        'b',
-        'c',
-        'd',
-        'decfloat16',
-        'decfloat34',
-        'f',
-        'i',
-        'int8',
-        'n',
-        'p',
-        's',
-        'string',
-        't',
-        'utclong',
-        'x',
-        'xstring',
-        // generic data types
-        'any',
-        'clike',
-        'csequence',
-        'decfloat',
-        'numeric',
-        'simple',
-        'xsequence',
-        // generic table types
-        'table',
-        // 'any table',
-        'hashed',
-        'index',
-        'sorted',
-        'standard',
-        // ddic data types
-        'accp',
-        'char',
-        'clnt',
-        'cuky',
-        'curr',
-        'dats',
-        'dec',
-        'df16_dec',
-        'df16_raw',
-        'df34_dec',
-        'df34_raw',
-        'fltp',
-        'int1',
-        'int2',
-        'int4',
-        // 'int8', built-in since 7.54
-        'lang',
-        'lchr',
-        'lraw',
-        'numc',
-        'quan',
-        'raw',
-        'rawstring',
-        'sstring',
-        'tims',
-        'unit',
-        // ddic  data types (obsolete)
-        'df16_scl',
-        'df34_scl',
-        'prec',
-        'varc',
-        // special data types
-        'abap_bool',
-        'space',
-        'me',
-        'syst',
-        'sy',
-        'screen'
-    ],
-    operators: [
-        // arithmetic operators
-        ' +',
-        ' -',
-        '/',
-        '*',
-        '**',
-        'div',
-        'mod',
-        // assignment operators
-        '=',
-        '#',
-        '@',
-        // concat operators
-        '&',
-        '&&',
-        // bit operators
-        'bit-and',
-        'bit-not',
-        'bit-or',
-        'bit-xor',
-        'm',
-        'o',
-        'z',
-        // boolean operators
-        'and',
-        'equiv',
-        'not',
-        'or',
-        // comparison operators
-        ' < ',
-        ' > ',
-        '<=',
-        '>=',
-        '<>',
-        '><',
-        '=<',
-        '=>',
-        'between',
-        'bt',
-        'byte-ca',
-        'byte-cn',
-        'byte-co',
-        'byte-cs',
-        'byte-na',
-        'byte-ns',
-        'ca',
-        'cn',
-        'co',
-        'cp',
-        'cs',
-        'eq',
-        'ge',
-        'gt',
-        'in',
-        'le',
-        'lt',
-        'na',
-        'nb',
-        'ne',
-        'np',
-        'ns'
-    ],
-    symbols: /[=><!~?&+\-*\/\^%#@]+/,
-    tokenizer: {
-        root: [
-            [
-                /[a-z_$][\w-$]*/,
-                {
-                    cases: {
-                        '@typeKeywords': 'keyword',
-                        '@keywords': 'keyword',
-                        '@operators': 'operator',
-                        '@default': 'identifier'
-                    }
-                }
-            ],
-            [/<[\w]+>/, 'identifier'],
-            { include: '@whitespace' },
-            [/[:,.]/, 'delimiter'],
-            [/[{}()\[\]]/, '@brackets'],
-            [/@symbols/, { cases: { '@operators': 'operator', '@default': '' } }],
-            [/'/, { token: 'string', bracket: '@open', next: '@stringquote' }],
-            [/`/, { token: 'string', bracket: '@open', next: '@stringping' }],
-            [/\|/, { token: 'string', bracket: '@open', next: '@stringtemplate' }],
-            [/\d+/, 'number']
-        ],
-        stringtemplate: [
-            [/[^\\\|]+/, 'string'],
-            [/\\\|/, 'string'],
-            [/\|/, { token: 'string', bracket: '@close', next: '@pop' }]
-        ],
-        stringping: [
-            [/[^\\`]+/, 'string'],
-            [/`/, { token: 'string', bracket: '@close', next: '@pop' }]
-        ],
-        stringquote: [
-            [/[^\\']+/, 'string'],
-            [/'/, { token: 'string', bracket: '@close', next: '@pop' }]
-        ],
-        whitespace: [
-            [/[ \t\r\n]+/, ''],
-            [/^\*.*$/, 'comment'],
-            [/\".*$/, 'comment']
-        ]
-    }
-};
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reqwest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reqwest */ "./node_modules/reqwest/reqwest.js");
+/* harmony import */ var reqwest__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(reqwest__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/index.js");
+/* harmony import */ var _AddForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddForm */ "./resources/js/components/AddForm.js");
+/* harmony import */ var _EditForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditForm */ "./resources/js/components/EditForm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helper */ "./resources/js/helper.js");
+/* harmony import */ var hashids__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! hashids */ "./node_modules/hashids/esm/index.js");
+function _typeof(obj) {
+  "@babel/helpers - typeof";
 
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _createSuper(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+  return function _createSuperInternal() {
+    var Super = _getPrototypeOf(Derived),
+        result;
+
+    if (hasNativeReflectConstruct) {
+      var NewTarget = _getPrototypeOf(this).constructor;
+
+      result = Reflect.construct(Super, arguments, NewTarget);
+    } else {
+      result = Super.apply(this, arguments);
+    }
+
+    return _possibleConstructorReturn(this, result);
+  };
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+
+
+
+
+var Paragraph = antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Paragraph,
+    Text = antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Text;
+
+
+
+
+
+
+var hashids = new hashids__WEBPACK_IMPORTED_MODULE_9__["default"]('qiaosong', 8);
+var base = '/admin/points';
+
+var TeacherList = /*#__PURE__*/function (_React$Component) {
+  _inherits(TeacherList, _React$Component);
+
+  var _super = _createSuper(TeacherList);
+
+  function TeacherList(props) {
+    var _this;
+
+    _classCallCheck(this, TeacherList);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "onRef", function (ref) {
+      _this.editFormRef = ref;
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleTableChange", function (pagination, filters) {
+      console.log(pagination);
+
+      _this.fetch({
+        pagination: pagination,
+        filters: filters,
+        force: true
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "stateBackup", null);
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      data: [],
+      pagination: {
+        current: 1,
+        pageSize: 5,
+        showSizeChanger: true,
+        disabled: false
+      },
+      loading: false,
+      showDrawer: false,
+      showEditDrawer: false,
+      filters: {},
+      initVal: {}
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "fetch", function () {
+      var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      if (_this.stateBackup) {
+        // 重新请求时恢复分页
+        _this.setState(_this.stateBackup);
+
+        params.pagination = _this.stateBackup.pagination;
+
+        if (!params.force) {
+          // 当刷新时恢复过滤(切换过滤选项时不恢复)
+          params.filters = _this.stateBackup.filters;
+        }
+
+        _this.stateBackup = null;
+      }
+
+      console.log(params.filters);
+
+      _this.setState({
+        loading: true
+      });
+
+      reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
+        url: '/api/1.0/teachers' + '?pageSize=' + params.pagination.pageSize + '&page=' + params.pagination.current,
+        data: _objectSpread({}, params.filters),
+        method: 'get',
+        type: 'json'
+      }).then(function (data) {
+        console.log(data);
+
+        _this.setState({
+          loading: false,
+          data: data.data,
+          pagination: _objectSpread(_objectSpread({}, params.pagination), {}, {
+            total: data.total
+          }),
+          filters: params.filters
+        });
+      }, function (err) {
+        Object(_helper__WEBPACK_IMPORTED_MODULE_8__["handleErr"])(err);
+
+        _this.setState({
+          loading: false
+        });
+      });
+    });
+
+    return _this;
+  }
+
+  _createClass(TeacherList, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var pagination = this.state.pagination;
+      this.fetch({
+        pagination: pagination,
+        filters: {}
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$state = this.state,
+          data = _this$state.data,
+          pagination = _this$state.pagination,
+          loading = _this$state.loading;
+      var columns = [{
+        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["UserOutlined"], null), " \u59D3\u540D"),
+        dataIndex: 'name',
+        fixed: 'left',
+        width: 80
+      }, {
+        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["IdcardOutlined"], null), " \u8EAB\u4EFD\u8BC1"),
+        dataIndex: 'IDNum',
+        render: function render(value) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Text, {
+            copyable: {
+              text: value
+            }
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Tooltip"], {
+            placement: "topLeft",
+            title: value
+          }, "...", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            style: {
+              fontFamily: 'Consolas'
+            }
+          }, value.slice(-3))));
+        },
+        width: 90
+      }, {
+        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["ApartmentOutlined"], null), " \u5C97\u4F4D"),
+        width: 110,
+        dataIndex: 'group',
+        ellipsis: {
+          showTitle: false
+        },
+        filters: [{
+          text: '领导',
+          value: '1'
+        }, {
+          text: '考试学科任课教师',
+          value: '2'
+        }, {
+          text: '非考试学科任课教师',
+          value: '3'
+        }, {
+          text: '教辅',
+          value: '4'
+        }],
+        render: function render(value) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Tooltip"], {
+            placement: "topLeft",
+            title: ['', '领导', '考试学科任课教师', '非考试学科任课教师', '教辅'][value]
+          }, ['', '领导', '考试学科任课教师', '非考试学科任课教师', '教辅'][value]);
+        },
+        filteredValue: this.state.filters.group || null
+      }, {
+        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["StockOutlined"], null), " \u804C\u7EA7"),
+        width: 100,
+        dataIndex: 'rank',
+        filters: [{
+          text: '初级教师',
+          value: '1'
+        }, {
+          text: '二级教师',
+          value: '2'
+        }, {
+          text: '一级教师',
+          value: '3'
+        }, {
+          text: '高级教师',
+          value: '4'
+        }, {
+          text: '正高级教师',
+          value: '5'
+        }],
+        render: function render(value) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Tag"], {
+            color: ['', 'green', 'orange', 'red', 'purple', 'geekblue'][value]
+          }, ['', '初级', '二级', '一级', '高级', '正高级'][value]);
+        },
+        filteredValue: this.state.filters.rank || null
+      }, {
+        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "\u6570\u636E"),
+        width: 80,
+        dataIndex: 'metaData',
+        render: function render(value) {
+          return value.err ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Popover"], {
+            key: value.id,
+            content: function () {
+              var val = value.errYears.map(function (year) {
+                return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+                  key: value.id + '' + year
+                }, year, " - ", year + 1, " \u5B66\u5E74\u5EA6");
+              });
+              var len = val.length;
+
+              if (!len) {
+                return '教师参加工作、职级评选年份设置有误。';
+              }
+
+              if (len >= 4) {
+                val = val.slice(0, 3);
+                val.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+                  key: value.id + '...'
+                }, "\u7B49 ", len, " \u6761\u6570\u636E"));
+              }
+
+              return val;
+            }(),
+            title: "\u7F3A\u5931\u7684\u6570\u636E\uFF1A"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Badge"], {
+            status: "error",
+            text: "\u7F3A\u5931"
+          })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Badge"], {
+            status: "success",
+            text: "\u5B8C\u6574"
+          });
+        }
+      }, {
+        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "\u8D26\u53F7"),
+        dataIndex: 'user_id',
+        width: 100,
+        render: function render(value) {
+          return value ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Badge"], {
+            status: "success",
+            text: "\u5DF2\u7ED1\u5B9A"
+          }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Badge"], {
+            status: "error",
+            text: "\u672A\u7ED1\u5B9A"
+          });
+        }
+      }, {
+        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["ToolOutlined"], null), " \u64CD\u4F5C"),
+        dataIndex: 'id',
+        width: 280,
+        fixed: 'right',
+        render: function render(value) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Space"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Popconfirm"], {
+            title: "\u6B64\u6559\u5E08\u6240\u6709\u7684\u5F97\u5206\u8BB0\u5F55\u4E5F\u5C06\u968F\u4E4B\u88AB\u5220\u9664\uFF0C\u771F\u7684\u8981\u5220\u9664\u8FD9\u6761\u8BB0\u5F55\u5417\uFF1F",
+            onConfirm: function onConfirm() {
+              var hide = antd__WEBPACK_IMPORTED_MODULE_3__["message"].loading('删除中...', 0);
+              console.log(value);
+              reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
+                url: '/api/1.0/teachers/' + value,
+                method: 'post',
+                data: {
+                  _method: 'delete'
+                }
+              }).then(function () {
+                hide();
+                setTimeout(function () {
+                  antd__WEBPACK_IMPORTED_MODULE_3__["message"].success('已删除。');
+                }, 500);
+
+                _this2.fetch({
+                  pagination: _this2.state.pagination,
+                  filters: _this2.state.filters
+                });
+              }, function (err) {
+                antd__WEBPACK_IMPORTED_MODULE_3__["message"].error(JSON.parse(err.response).message);
+              });
+            },
+            okText: "\u786E\u5B9A",
+            cancelText: "\u53D6\u6D88"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+            danger: true
+          }, "\u5220\u9664")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+            onClick: function onClick() {
+              var remove = antd__WEBPACK_IMPORTED_MODULE_3__["message"].loading('正在加载教师详细信息');
+              reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
+                url: '/api/1.0/teachers/' + value
+              }).then(function (data) {
+                data.fromYear = moment__WEBPACK_IMPORTED_MODULE_6___default()(data.fromYear, 'YYYY');
+
+                _this2.setState({
+                  initVal: data,
+                  showEditDrawer: true,
+                  editID: value
+                });
+
+                console.log(_this2.state.initVal);
+                remove();
+              });
+
+              _this2.editFormRef.handleRefresh();
+            }
+          }, "\u7F16\u8F91"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Link"], {
+            to: "".concat(base, "/").concat(hashids.encode(value))
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["FormOutlined"], null), " \u4FEE\u6539\u5206\u6570"))));
+        }
+      }];
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddForm__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        visible: this.state.showDrawer,
+        onClose: function onClose() {
+          _this2.setState({
+            showDrawer: false
+          });
+        },
+        refresh: function refresh() {
+          _this2.fetch({
+            pagination: _this2.state.pagination,
+            filters: _this2.state.filters,
+            force: true
+          });
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        visible: this.state.showEditDrawer,
+        onClose: function onClose() {
+          _this2.setState({
+            showEditDrawer: false
+          });
+        },
+        editID: this.state.editID,
+        refresh: function refresh() {
+          _this2.fetch({
+            pagination: _this2.state.pagination,
+            filters: _this2.state.filters
+          });
+        },
+        initVal: this.state.initVal,
+        onRef: this.onRef
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Space"], {
+        direction: "vertical",
+        style: {
+          width: '100%'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Space"], {
+        direction: 'horizontal'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Input"].Search, {
+        placeholder: "\u641C\u7D22\u59D3\u540D\u6216\u8EAB\u4EFD\u8BC1\u53F7",
+        onSearch: function onSearch(value) {
+          _this2.setState({
+            loading: true
+          });
+
+          reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
+            url: '/api/1.0/teachers?query=' + value,
+            method: 'get',
+            type: 'json'
+          }).then(function (data) {
+            console.log(data);
+
+            if (!_this2.stateBackup) {
+              _this2.stateBackup = {
+                pagination: _objectSpread(_objectSpread({}, _this2.state.pagination), {}, {
+                  current: 1
+                }),
+                //current:1 防止筛选后看不到数据
+                filters: _this2.state.filters
+              };
+            }
+
+            _this2.setState({
+              loading: false,
+              data: data,
+              pagination: _objectSpread(_objectSpread({}, _this2.state.pagination), {}, {
+                total: data.length,
+                current: 1,
+                pageSize: data.length,
+                disabled: true
+              }),
+              filters: {}
+            });
+          }, function (err) {
+            _this2.setState({
+              loading: false
+            });
+
+            Object(_helper__WEBPACK_IMPORTED_MODULE_8__["handleErr"])(err);
+          });
+        },
+        style: {
+          width: 200
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+        type: "primary",
+        icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["PlusOutlined"], null),
+        onClick: function onClick() {
+          _this2.setState({
+            showDrawer: true
+          });
+        }
+      }, "\u65B0\u589E\u6559\u5E08"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+        type: "text",
+        onClick: function onClick() {
+          _this2.setState({
+            loading: true
+          });
+
+          _this2.fetch({
+            pagination: _this2.state.pagination,
+            filters: _this2.state.filters
+          });
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["SyncOutlined"], {
+        spin: this.state.loading
+      }), " \u5237\u65B0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Table"], {
+        style: {
+          width: '100%'
+        },
+        scroll: {
+          x: 1000
+        },
+        columns: columns,
+        rowKey: function rowKey(record) {
+          return record.id;
+        },
+        dataSource: data,
+        pagination: pagination,
+        loading: loading,
+        onChange: this.handleTableChange
+      })));
+    }
+  }]);
+
+  return TeacherList;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TeacherList);
 
 /***/ })
 

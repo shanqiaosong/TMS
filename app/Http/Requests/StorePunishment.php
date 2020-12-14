@@ -28,7 +28,7 @@ class StorePunishment extends FormRequest
             'teacher_basic_id'=>'required',
             'year'=>'digits:4|required',
             'points'=>'numeric',
-            'type'=>'in:1,2,3|required',
+            'type'=>'in:1,2,3,4|required',
             'penaltyYears'=>'integer|required',
             'description'=>'required'
         ];

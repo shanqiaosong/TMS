@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="Ali" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="Ali" remoteFilesAllowedToDisappearOnAutoupload="false" compareModeInSync="TEXT">
     <serverData>
       <paths name="Ali">
         <serverdata>
@@ -8,6 +8,10 @@
             <mapping deploy="/TMS" local="$PROJECT_DIR$" web="/" />
             <mapping local="" />
           </mappings>
+          <excludedPaths>
+            <excludedPath path="/TMS/node_modules" />
+            <excludedPath path="/TMS/vendor" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

@@ -5,5 +5,6 @@
     "/js/blog.js": "/js/blog.js",
     "/js/home.js": "/js/home.js",
     "/js/reset.js": "/js/reset.js",
-    "/js/user.js": "/js/user.js"
+    "/js/user.js": "/js/user.js",
+    "/js/wx/login.js": "/js/wx/login.js"
 }

@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[14],{
 
-/***/ "./resources/js/components/ScoreList.js":
-/*!**********************************************!*\
-  !*** ./resources/js/components/ScoreList.js ***!
-  \**********************************************/
+/***/ "./resources/js/components/BindingList.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/BindingList.js ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -17,11 +17,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/index.js");
 /* harmony import */ var _AddForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddForm */ "./resources/js/components/AddForm.js");
 /* harmony import */ var _EditForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditForm */ "./resources/js/components/EditForm.js");
-/* harmony import */ var _Explain__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Explain */ "./resources/js/components/Explain.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../helper */ "./resources/js/helper.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../helper */ "./resources/js/helper.js");
 function _typeof(obj) {
   "@babel/helpers - typeof";
 
@@ -192,25 +191,23 @@ function _defineProperty(obj, key, value) {
 
 
 
-var Text = antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Text,
-    Paragraph = antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Paragraph;
+var Paragraph = antd__WEBPACK_IMPORTED_MODULE_3__["Typography"].Paragraph;
 
 
 
 
 
+var base = '/admin/binding';
 
-var base = '/admin/points';
+var BindingList = /*#__PURE__*/function (_React$Component) {
+  _inherits(BindingList, _React$Component);
 
-var ScoreList = /*#__PURE__*/function (_React$Component) {
-  _inherits(ScoreList, _React$Component);
+  var _super = _createSuper(BindingList);
 
-  var _super = _createSuper(ScoreList);
-
-  function ScoreList(props) {
+  function BindingList(props) {
     var _this;
 
-    _classCallCheck(this, ScoreList);
+    _classCallCheck(this, BindingList);
 
     _this = _super.call(this, props);
 
@@ -218,14 +215,9 @@ var ScoreList = /*#__PURE__*/function (_React$Component) {
       _this.editFormRef = ref;
     });
 
-    _defineProperty(_assertThisInitialized(_this), "handleTableChange", function (pagination, filters) {
-      console.log(pagination);
-
+    _defineProperty(_assertThisInitialized(_this), "handleTableChange", function (pagination) {
       _this.fetch({
-        pagination: pagination,
-        filters: filters,
-        year: _this.state.yearMoment.year(),
-        force: true
+        pagination: pagination
       });
     });
 
@@ -233,47 +225,27 @@ var ScoreList = /*#__PURE__*/function (_React$Component) {
       data: [],
       pagination: {
         current: 1,
-        pageSize: 5,
-        showSizeChanger: true,
-        disabled: false
+        pageSize: 10,
+        showSizeChanger: true
       },
       loading: false,
-      showDrawer: false,
-      showEditDrawer: false,
-      filters: {},
-      initVal: {},
-      yearMoment: moment__WEBPACK_IMPORTED_MODULE_7___default()(),
-      excelLoading: false,
-      showExplain: false,
-      explainID: null
+      changingUserID: '',
+      showModal: false,
+      showRoleModal: false,
+      changeIDNum: '',
+      confirmLoading: false,
+      confirmVisible: []
     });
-
-    _defineProperty(_assertThisInitialized(_this), "stateBackup", null);
 
     _defineProperty(_assertThisInitialized(_this), "fetch", function () {
       var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-      if (_this.stateBackup) {
-        // 重新请求时恢复分页
-        _this.setState(_this.stateBackup);
-
-        params.pagination = _this.stateBackup.pagination;
-
-        if (!params.force) {
-          // 当刷新时恢复过滤(切换过滤选项时不恢复)
-          params.filters = _this.stateBackup.filters;
-        }
-
-        _this.stateBackup = null;
-      }
 
       _this.setState({
         loading: true
       });
 
       reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
-        url: '/api/1.0/results' + '?pageSize=' + params.pagination.pageSize + '&page=' + params.pagination.current + '&year=' + params.year,
-        data: _objectSpread({}, params.filters),
+        url: '/api/1.0/binding' + '?pageSize=' + params.pagination.pageSize + '&page=' + params.pagination.current,
         method: 'get',
         type: 'json'
       }).then(function (data) {
@@ -284,8 +256,7 @@ var ScoreList = /*#__PURE__*/function (_React$Component) {
           data: data.data,
           pagination: _objectSpread(_objectSpread({}, params.pagination), {}, {
             total: data.total
-          }),
-          filters: params.filters
+          })
         });
       });
     });
@@ -293,14 +264,12 @@ var ScoreList = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  _createClass(ScoreList, [{
+  _createClass(BindingList, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var pagination = this.state.pagination;
       this.fetch({
-        pagination: pagination,
-        year: moment__WEBPACK_IMPORTED_MODULE_7___default()().year(),
-        filters: {}
+        pagination: pagination
       });
     }
   }, {
@@ -310,101 +279,186 @@ var ScoreList = /*#__PURE__*/function (_React$Component) {
 
       var _this$state = this.state,
           data = _this$state.data,
-          pagination = _this$state.pagination,
           loading = _this$state.loading;
+      var radioStyle = {
+        display: 'block',
+        height: '30px',
+        lineHeight: '30px'
+      };
       var columns = [{
-        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["UserOutlined"], null), " \u59D3\u540D"),
-        dataIndex: 'name',
-        fixed: 'left',
-        width: 80
+        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["ContactsOutlined"], null), " \u7528\u6237\u540D"),
+        dataIndex: 'userName',
+        width: 100,
+        fixed: 'left'
       }, {
-        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["IdcardOutlined"], null), " \u8EAB\u4EFD\u8BC1"),
-        dataIndex: 'IDNum',
-        render: function render(value) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Text, null, "...", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-            style: {
-              fontFamily: 'Consolas'
-            }
-          }, value.slice(-3)));
-        },
-        width: 100
-      }, {
-        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["ApartmentOutlined"], null), " \u5C97\u4F4D"),
-        dataIndex: 'group',
+        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["MailOutlined"], null), " \u90AE\u7BB1"),
+        width: 100,
+        dataIndex: 'userEmail',
         ellipsis: {
           showTitle: false
         },
-        filters: [{
-          text: '领导',
-          value: '1'
-        }, {
-          text: '考试学科任课教师',
-          value: '2'
-        }, {
-          text: '非考试学科任课教师',
-          value: '3'
-        }, {
-          text: '教辅',
-          value: '4'
-        }],
         render: function render(value) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Tooltip"], {
             placement: "topLeft",
-            title: ['', '领导', '考试学科任课教师', '非考试学科任课教师', '教辅'][value]
-          }, ['', '领导', '考试学科任课教师', '非考试学科任课教师', '教辅'][value]);
-        },
-        filteredValue: this.state.filters.group || null
-      }, {
-        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["StockOutlined"], null), " \u804C\u7EA7"),
-        dataIndex: 'rank',
-        filters: [{
-          text: '初级教师',
-          value: '1'
-        }, {
-          text: '二级教师',
-          value: '2'
-        }, {
-          text: '一级教师',
-          value: '3'
-        }, {
-          text: '高级教师',
-          value: '4'
-        }, {
-          text: '正高级教师',
-          value: '5'
-        }],
-        render: function render(value) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Tag"], {
-            color: ['', 'green', 'orange', 'red', 'purple', 'geekblue'][value]
-          }, ['', '初级教师', '二级教师', '一级教师', '高级教师', '正高级教师'][value]);
-        },
-        filteredValue: this.state.filters.rank || null
-      }, {
-        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "\u72B6\u6001"),
-        dataIndex: 'inPenalty',
-        render: function render(value) {
-          return value ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Badge"], {
-            status: "error",
-            text: "\u6682\u4E0D\u53EF\u664B\u5347"
-          }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Badge"], {
-            status: "success",
-            text: "\u6B63\u5E38"
-          });
+            title: value
+          }, value);
         }
       }, {
-        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "\u5206\u6570"),
-        dataIndex: 'score',
+        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["UserOutlined"], null), " \u7ED1\u5B9A\u6559\u5E08"),
+        width: 120,
+        dataIndex: 'teacherName',
+        render: function render(val, rec) {
+          return val ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Tooltip"], {
+            placement: "topLeft",
+            title: rec.IDNum
+          }, val) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Badge"], {
+            status: "error"
+          }), "\u672A\u7ED1\u5B9A");
+        }
+      }, {
+        title: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["ToolOutlined"], null), " \u64CD\u4F5C"),
         fixed: 'right',
-        width: 130,
+        dataIndex: 'IDNum',
+        width: 350,
         render: function render(value, record) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-            onClick: function onClick() {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Space"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Popconfirm"], {
+            title: "\u771F\u7684\u8981\u89E3\u7ED1\uFF1F",
+            onConfirm: function onConfirm() {
+              var hide = antd__WEBPACK_IMPORTED_MODULE_3__["message"].loading('解绑中...', 0);
+              reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
+                url: '/api/1.0/binding/bind/',
+                method: 'post',
+                type: 'json',
+                data: {
+                  userID: -1,
+                  IDNum: value
+                }
+              }).then(function () {
+                hide();
+                setTimeout(function () {
+                  antd__WEBPACK_IMPORTED_MODULE_3__["message"].success('已解绑。');
+                }, 500);
+
+                _this2.fetch({
+                  pagination: _this2.state.pagination
+                });
+              }, function (err) {
+                hide();
+
+                _this2.setState({
+                  confirmLoading: false
+                });
+
+                antd__WEBPACK_IMPORTED_MODULE_3__["message"].error(JSON.parse(err.response).message);
+              });
+            },
+            onVisibleChange: function onVisibleChange(vis) {
+              if (!value) return;
+              var newVis = _this2.state.confirmVisible;
+              newVis[record.userID] = vis;
+
               _this2.setState({
-                showExplain: true,
-                explainID: record.id
+                confirmVisible: newVis
+              });
+            },
+            visible: _this2.state.confirmVisible[record.userID]
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+            danger: true,
+            disabled: value == null
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["DisconnectOutlined"], null), " \u89E3\u7ED1")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+            onClick: function onClick() {
+              console.log(record.userID);
+
+              _this2.setState({
+                changingUserID: record.userID,
+                showModal: true
               });
             }
-          }, value, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["EyeOutlined"], null)));
+          }, "\u6362\u7ED1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+            onClick: function onClick() {
+              console.log(record.userID);
+
+              _this2.setState({
+                changingUserID: record.userID,
+                showRoleModal: true,
+                changeToRole: record.roles ? record.roles : 3
+              });
+            }
+          }, "\u6743\u9650"), record.status === 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Popover"], {
+            placement: "leftTop",
+            title: '确认绑定',
+            content: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Paragraph, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["InfoCircleOutlined"], null), " \u7533\u8BF7\u7ED1\u5B9A\u7684\u8EAB\u4EFD\u8BC1\u53F7\u4E3A\uFF1A", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+              style: {
+                fontFamily: 'Consolas'
+              }
+            }, record.pendingIDNum)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Space"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+              onClick: function onClick() {
+                var _this2$state = _this2.state,
+                    changingUserID = _this2$state.changingUserID,
+                    changeIDNum = _this2$state.changeIDNum,
+                    pagination = _this2$state.pagination;
+                var finish = antd__WEBPACK_IMPORTED_MODULE_3__["message"].loading('确认中...');
+                reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
+                  url: '/api/1.0/binding/bind/',
+                  method: 'post',
+                  type: 'json',
+                  data: {
+                    userID: record.userID,
+                    IDNum: record.pendingIDNum
+                  }
+                }).then(function () {
+                  finish();
+                  setTimeout(function () {
+                    return antd__WEBPACK_IMPORTED_MODULE_3__["message"].success('已绑定。');
+                  }, 500);
+
+                  _this2.fetch({
+                    pagination: pagination
+                  });
+                }, function (err) {
+                  antd__WEBPACK_IMPORTED_MODULE_3__["message"].error(JSON.parse(err.response).message);
+                  finish();
+                });
+              },
+              size: "small",
+              type: 'primary'
+            }, "\u786E\u8BA4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+              onClick: function onClick() {
+                var _this2$state2 = _this2.state,
+                    changingUserID = _this2$state2.changingUserID,
+                    changeIDNum = _this2$state2.changeIDNum,
+                    pagination = _this2$state2.pagination;
+                var finish = antd__WEBPACK_IMPORTED_MODULE_3__["message"].loading('拒绝中...');
+                reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
+                  url: '/api/1.0/binding/deny/',
+                  method: 'post',
+                  type: 'json',
+                  data: {
+                    userID: record.userID
+                  }
+                }).then(function () {
+                  finish();
+                  setTimeout(function () {
+                    return antd__WEBPACK_IMPORTED_MODULE_3__["message"].success('已拒绝。');
+                  }, 500);
+
+                  _this2.fetch({
+                    pagination: pagination
+                  });
+                }, function (err) {
+                  antd__WEBPACK_IMPORTED_MODULE_3__["message"].error(JSON.parse(err.response).message);
+                  finish();
+                });
+              },
+              size: 'small',
+              danger: true
+            }, "\u62D2\u7EDD")))
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+            onClick: function onClick() {},
+            type: 'text'
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Badge"], {
+            status: 'processing'
+          }), "\u7533\u8BF7\u4E2D")) : ''));
         }
       }];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Space"], {
@@ -414,136 +468,35 @@ var ScoreList = /*#__PURE__*/function (_React$Component) {
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Space"], {
         direction: 'horizontal'
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["DatePicker"], {
-        picker: 'year',
-        style: {
-          width: 80
-        },
-        defaultValue: moment__WEBPACK_IMPORTED_MODULE_7___default()(),
-        allowClear: false,
-        onChange: function onChange(val) {
-          _this2.setState({
-            yearMoment: val
-          });
-
-          var pagination = _this2.state.pagination;
-
-          _this2.fetch({
-            pagination: pagination,
-            year: val.year(),
-            filters: _this2.state.filters
-          });
-        }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-        type: 'primary',
-        onClick: function onClick() {
-          antd__WEBPACK_IMPORTED_MODULE_3__["Modal"].confirm({
-            title: '确定要重新计算 ' + _this2.state.yearMoment.year() + ' 年的数据吗？',
-            icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["ExclamationCircleOutlined"], null),
-            content: '使用最新数据计算分数，旧的计算结果将被删除。',
-            onOk: function onOk() {
-              return reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
-                url: '/api/1.0/score/year/' + _this2.state.yearMoment.year(),
-                type: 'json',
-                method: 'post'
-              }).then(function () {
-                antd__WEBPACK_IMPORTED_MODULE_3__["message"].success('计算成功！');
-                var pagination = _this2.state.pagination;
-
-                _this2.fetch({
-                  pagination: pagination,
-                  year: _this2.state.yearMoment.year(),
-                  filters: _this2.state.filters
-                });
-              }, function (err) {
-                Object(_helper__WEBPACK_IMPORTED_MODULE_9__["handleErr"])(err);
-              });
-            },
-            onCancel: function onCancel() {}
-          });
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["CalculatorOutlined"], null), " \u91CD\u65B0\u8BA1\u7B97"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-        icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["DownloadOutlined"], null),
-        loading: this.state.excelLoading,
-        onClick: function onClick() {
-          _this2.setState({
-            excelLoading: true
-          });
-
-          fetch("/download/" + _this2.state.yearMoment.year()).then(function (res) {
-            return res.blob();
-          }).then(function (blob) {
-            var a = document.createElement('a');
-            var url = window.URL.createObjectURL(blob);
-            a.href = url;
-            a.download = _this2.state.yearMoment.year() + '年度教师评级成绩表 ' + moment__WEBPACK_IMPORTED_MODULE_7___default()().format('YYYY-MM-DD') + '.xlsx';
-            a.click();
-            window.URL.revokeObjectURL(url);
-
-            _this2.setState({
-              excelLoading: false
-            });
-          });
-        }
-      }, " \u4E0B\u8F7D Excel \u8868\u683C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Divider"], {
-        type: 'vertical'
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Paragraph, {
-        style: {
-          whiteSpace: 'normal',
-          margin: 0
-        },
-        ellipsis: {
-          rows: 2
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["ExclamationCircleOutlined"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Tooltip"], {
-        placement: "left",
-        title: "\u5C06 ".concat(this.state.yearMoment.year() - 1, " - ").concat(this.state.yearMoment.year(), " \u5B66\u5E74\u5EA6\u53CA\u66F4\u65E9\u7684\u6570\u636E\u7EB3\u5165\u8BA1\u7B97\u3002")
-      }, " \u5C06 ".concat(this.state.yearMoment.year() - 1, " - ").concat(this.state.yearMoment.year(), " \u5B66\u5E74\u5EA6\u53CA\u66F4\u65E9\u7684\u6570\u636E\u7EB3\u5165\u8BA1\u7B97\u3002")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Space"], {
-        direction: 'horizontal'
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Input"].Search, {
-        placeholder: "\u641C\u7D22\u59D3\u540D",
+        placeholder: "\u641C\u7D22\u7528\u6237\u540D\u6216\u90AE\u7BB1",
         onSearch: function onSearch(value) {
           _this2.setState({
             loading: true
           });
 
           reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
-            url: '/api/1.0/results',
+            url: '/api/1.0/binding',
             data: {
-              year: _this2.state.yearMoment.year(),
               query: value
             },
             method: 'get',
             type: 'json'
           }).then(function (data) {
-            //console.log(data)
-            if (!_this2.stateBackup) {
-              _this2.stateBackup = {
-                pagination: _objectSpread(_objectSpread({}, _this2.state.pagination), {}, {
-                  current: 1
-                }),
-                //current:1 防止筛选后看不到数据
-                filters: _this2.state.filters
-              };
-            }
-
             _this2.setState({
               loading: false,
               data: data,
               pagination: _objectSpread(_objectSpread({}, _this2.state.pagination), {}, {
                 total: data.length,
-                current: 1,
-                pageSize: data.length,
-                disabled: true
-              }),
-              filters: []
+                current: 1
+              })
             });
           }, function (err) {
             _this2.setState({
               loading: false
             });
 
-            Object(_helper__WEBPACK_IMPORTED_MODULE_9__["handleErr"])(err);
+            Object(_helper__WEBPACK_IMPORTED_MODULE_8__["handleErr"])(err);
           });
         },
         style: {
@@ -557,23 +510,21 @@ var ScoreList = /*#__PURE__*/function (_React$Component) {
           });
 
           _this2.fetch({
-            pagination: _this2.state.pagination,
-            filters: _this2.state.filters,
-            year: _this2.state.yearMoment.year()
+            pagination: _this2.state.pagination
           });
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["SyncOutlined"], {
         spin: this.state.loading
       }), " \u5237\u65B0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Table"], {
-        scroll: {
-          x: 600
-        },
         style: {
           width: '100%'
         },
+        scroll: {
+          x: 600
+        },
         columns: columns,
         rowKey: function rowKey(record) {
-          return record.id;
+          return record.userID;
         },
         dataSource: data,
         pagination: this.state.pagination,
@@ -582,35 +533,135 @@ var ScoreList = /*#__PURE__*/function (_React$Component) {
         locale: {
           emptyText: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Empty"], {
             image: antd__WEBPACK_IMPORTED_MODULE_3__["Empty"].PRESENTED_IMAGE_SIMPLE,
-            description: '没有数据，请点击上方按钮计算。'
+            description: '没有数据。'
           })
         }
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
-        visible: this.state.showExplain,
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
+        title: '换绑用户',
+        confirmLoading: this.state.confirmLoading,
+        onOk: function onOk() {
+          _this2.setState({
+            confirmLoading: true
+          });
+
+          var _this2$state3 = _this2.state,
+              changingUserID = _this2$state3.changingUserID,
+              changeIDNum = _this2$state3.changeIDNum,
+              pagination = _this2$state3.pagination;
+          console.log(_this2.state);
+          reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
+            url: '/api/1.0/binding/bind/',
+            method: 'post',
+            type: 'json',
+            data: {
+              userID: changingUserID,
+              IDNum: changeIDNum
+            }
+          }).then(function () {
+            antd__WEBPACK_IMPORTED_MODULE_3__["message"].success('已绑定。');
+
+            _this2.setState({
+              showModal: false,
+              confirmLoading: false
+            });
+
+            _this2.fetch({
+              pagination: pagination
+            });
+          }, function (err) {
+            antd__WEBPACK_IMPORTED_MODULE_3__["message"].error(JSON.parse(err.response).message);
+
+            _this2.setState({
+              confirmLoading: false
+            });
+          });
+        },
         onCancel: function onCancel() {
           _this2.setState({
-            showExplain: false
+            showModal: false
           });
         },
-        closable: false,
-        footer: null,
-        width: 700,
-        destroyOnClose: true
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Explain__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        onClose: function onClose() {
+        visible: this.state.showModal
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["ExclamationCircleOutlined"], null), " \u8BF7\u8F93\u5165\u8981\u7ED1\u5B9A\u7684\u6559\u5E08\u8EAB\u4EFD\u8BC1\u53F7\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Input"], {
+        onChange: function onChange(value) {
           _this2.setState({
-            showExplain: false
+            changeIDNum: value.target.value.toUpperCase()
           });
         },
-        resultID: this.state.explainID
-      })));
+        value: this.state.changeIDNum
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
+        title: '管理权限',
+        confirmLoading: this.state.confirmLoading,
+        onOk: function onOk() {
+          _this2.setState({
+            confirmLoading: true
+          });
+
+          var _this2$state4 = _this2.state,
+              changingUserID = _this2$state4.changingUserID,
+              changeToRole = _this2$state4.changeToRole,
+              pagination = _this2$state4.pagination;
+          console.log(_this2.state);
+          reqwest__WEBPACK_IMPORTED_MODULE_1___default()({
+            url: '/api/1.0/role/' + changingUserID,
+            method: 'post',
+            type: 'json',
+            data: {
+              role: _this2.state.changeToRole
+            }
+          }).then(function () {
+            antd__WEBPACK_IMPORTED_MODULE_3__["message"].success('已设置。');
+
+            _this2.setState({
+              showModal: false,
+              confirmLoading: false
+            });
+
+            _this2.fetch({
+              pagination: pagination
+            });
+          }, function (err) {
+            antd__WEBPACK_IMPORTED_MODULE_3__["message"].error(JSON.parse(err.response).message);
+
+            _this2.setState({
+              confirmLoading: false
+            });
+          });
+        },
+        onCancel: function onCancel() {
+          _this2.setState({
+            showRoleModal: false
+          });
+        },
+        visible: this.state.showRoleModal,
+        destroyOnClose: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ant_design_icons__WEBPACK_IMPORTED_MODULE_2__["ExclamationCircleOutlined"], null), " \u8BF7\u9009\u62E9\u6743\u9650\uFF1A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Radio"].Group, {
+        onChange: function onChange(val) {
+          _this2.setState({
+            changeToRole: val.target.value
+          });
+        },
+        defaultValue: this.state.changeToRole
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Radio"], {
+        style: radioStyle,
+        value: 1
+      }, "\u7CFB\u7EDF\u7BA1\u7406\u5458"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Radio"], {
+        style: radioStyle,
+        value: 2
+      }, "\u5F55\u5165\u5458"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Radio"], {
+        style: radioStyle,
+        value: 3
+      }, "\u666E\u901A\u7528\u6237"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Radio"], {
+        style: radioStyle,
+        value: 4
+      }, "\u7981\u7528")))));
     }
   }]);
 
-  return ScoreList;
+  return BindingList;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (ScoreList);
+/* harmony default export */ __webpack_exports__["default"] = (BindingList);
 
 /***/ })
 

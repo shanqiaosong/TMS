@@ -42,7 +42,7 @@ import { MinusCircleOutlined,
 import moment from "moment";
 import '../../css/admin.css'
 import {handleErr} from "../helper";
-const Hashids = require('hashids/cjs')
+import Hashids from 'hashids'
 const hashids = new Hashids('qiaosong',8)
 
 class PointsEditForm extends React.Component{
