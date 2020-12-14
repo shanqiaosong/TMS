@@ -20,6 +20,7 @@
         "league/html-to-markdown": "^4.10",
         "overtrue/laravel-lang": "~3.0",
         "phpoffice/phpspreadsheet": "^1.14",
+        "pusher/pusher-php-server": "~3.0",
         "rap2hpoutre/laravel-log-viewer": "^1.7"
     },
     "require-dev": {
